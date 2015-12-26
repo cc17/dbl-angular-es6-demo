@@ -1,18 +1,25 @@
-angular.module('app.controllers').controller('homeController',[
-  '$scope',
-  'homeRequest',
-  function($scope,homeRequest){
-  var vm = this;
-  var home = {
-    name:'cc',
-    changeName:function(){
-      alert(1);
-    }
-  };
-  angular.extend(vm,home);
+let module = angular.module('app.controllers');
 
-  homeRequest.fetchMainList().then(function(res){
-    vm.ajaxData = res.data.data;
-  });
+class HomeController {
+  constructor(homeRequest){
+    this.homeRequest = homeRequest;
+    let vm = this;
+    let home = {
+      name:'cc',
+      changeName:function(){
+        alert(1);
+      }
+    };
+    angular.extend(vm,home);
+    this.fetch();
+  }
+  fetch(){
+    let vm = this;
+    this.homeRequest.fetchMainList().then((res)=> {
+      vm.ajaxData = res.data.data;
+    });
+  }
+}
+HomeController.$inject = ['homeRequest'];
 
-}]);
+module.controller('homeController',HomeController);

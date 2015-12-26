@@ -1,4 +1,4 @@
-require('../controllers/homeController');
+import homeController from '../controllers/homeController';
 angular.module('app.routes')
   .config(function($stateProvider,$urlRouterProvider){ 
     $stateProvider.state("home", {

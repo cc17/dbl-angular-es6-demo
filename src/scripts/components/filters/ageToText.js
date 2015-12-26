@@ -1,6 +1,10 @@
-var module = angular.module('app.filters');
-module.filter('ageToText',function(){
+let module = angular.module('app.filters');
+const ageMap = {
+  18:'壹拾捌'
+};
+function filterFn(){
   return function(age){
-    return '壹拾捌';
+    return ageMap[age];
   }
-});
+}
+module.filter('ageToText',filterFn);
